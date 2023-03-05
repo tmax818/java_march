@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Java October</title>
+
+		<meta name="description" content="October Java - Coding Dojo - Burbank">
+		<meta name="author" content="Tyler Maxwell">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css">
+		<style>
+			.container{
+				display: flex;
+			}
+			.col{
+				flex: 2;
+			}
+			</style>
+	</head>
+
+	<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<section>
+				<a href="#">
+					<img
+					src="./../../images/coding_dojo_logo_white.png"
+					alt="cd logo"
+					style="
+						height: 200px;
+						margin: 0 auto 4rem auto;
+						background: transparent;
+					"
+					class="demo-logo"
+					/>
+				</a>
+			</section>
+				
+			<section>
+			<img width="500" src="../../images/Java-Logo.webp" alt="java logo">
+			</section>
+
+			<section>
+				<img src="../../images/spring.png" alt="">
+			</section>
+
+			<section>
+				<img src="../../images/spring-boot.webp" alt="">
+			</section>
+			
+			<section>
+				<h2>Day 9 and 10</h2>
+				<p>
+					Java Relationships
+				</p>
+			</section>
+				
+				
+			<section data-markdown="assignments.md"
+				data-separator="^---"
+				data-separator-vertical="^--"
+				data-separator-notes="^note:"
+				data-charset="iso-8859-15">
+			</section>
+
+
+			<section>
+				<h1>Relationships</h1>
+			</section>
+
+			<section>
+
+				<section>
+					<h3>One to Many</h3>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Dojo.java</code></h4>
+					<p class="fragment">A dojo has many ninjas</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+				@Entity
+				@Table(name="dojos")
+				public class Dojo {
+
+				}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Dojo.java</code></h4>
+					<p class="fragment"> Use<code>@OneToMany</code></p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+				@Entity
+				@Table(name="dojos")
+				public class Dojo {
+					@OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+					private List&lt;Ninja&gt; ninjas;
+					
+					public Dojo() {
+						
+					}
+				}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Dojo.java</code></h4>
+					<p class="fragment">add other dojo attributes</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+				@Entity
+				@Table(name="dojos")
+				public class Dojo {
+					
+					@Id
+					@GeneratedValue(strategy = GenerationType.IDENTITY)
+					private Long id;
+					private String name;
+					@Column(updatable=false)
+					private Date createdAt;
+					private Date updatedAt;
+					@OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+					private List&lt;Ninja&gt; ninjas;
+					
+					public Dojo() {
+						
+					}
+				}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Ninja.java</code></h4>
+					<p class="fragment">a ninja belongs to a dojo</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+						@Entity
+						@Table(name="ninjas")
+						public class Ninja {
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Ninja.java</code></h4>
+					<p class="fragment"> Use<code>@ManyToOne</code></p>
+					<p class="fragment"> and<code>@JoinColumn(name="dojo_id")</code></p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+						@Entity
+						@Table(name="ninjas")
+						public class Ninja {
+							@ManyToOne(fetch = FetchType.LAZY)
+							@JoinColumn(name="dojo_id")
+							private Dojo dojo;
+							
+							public Ninja() {								
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Ninja.java</code></h4>
+					<p class="fragment">add other attributes of a ninja</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+						@Entity
+						@Table(name="ninjas")
+						public class Ninja {
+							@Id
+							@GeneratedValue(strategy = GenerationType.IDENTITY)
+							private Long id;
+							private String firstName;
+							private String lastName;
+							private int age;
+							@Column(updatable=false)
+							private Date createdAt;
+							private Date updatedAt;
+							@ManyToOne(fetch = FetchType.LAZY)
+							@JoinColumn(name="dojo_id")
+							private Dojo dojo;
+							
+							public Ninja() {								
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Dojo.java</code></h4>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+				@Entity
+				@Table(name="dojos")
+				public class Dojo {
+					@OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+					private List&lt;Ninja&gt; ninjas;
+				}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>Ninja.java</code></h4>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+						@Entity
+						@Table(name="ninjas")
+						public class Ninja {
+							@ManyToOne(fetch = FetchType.LAZY)
+							@JoinColumn(name="dojo_id")
+							private Dojo dojo;
+						}
+					</code></pre>
+				</section>
+			</section>
+
+			<section>
+
+				<section>
+					<h3>Login and Registration</h3>
+				</section>
+
+
+				<section>
+					<h3>Registration</h3>
+					<p class="fragment">What is registration?</p>
+					<p class="fragment">Adding users to our database!</p>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>HomeController.java</code></h4>
+					<p class="fragment">create route to display login/Reg form</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers>
+						@Controller
+						public class HomeController {
+							@GetMapping("/")
+							public String index(Model model) {
+								// Bind empty User and LoginUser objects to capture form input
+								model.addAttribute("newUser", new User());
+								model.addAttribute("newLogin", new LoginUser());
+								return "index.jsp";
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>HomeController.java</code></h4>
+					<p class="fragment">send instance of a User for data binding</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="6">
+						@Controller
+						public class HomeController {
+							@GetMapping("/")
+							public String index(Model model) {
+								// Bind empty User and LoginUser objects to capture form input
+								model.addAttribute("newUser", new User());
+								model.addAttribute("newLogin", new LoginUser());
+								return "index.jsp";
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>index.jsp</code></h4>
+					<p class="fragment">the instance becomes the <code>modelAttribute</code></p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="2">
+						&lt;h2>Register&lt/h2&gt;
+						&lt;form:form action="/register" method="post" modelAttribute="newUser"&gt;
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>HomeController.java</code></h4>
+					<p class="fragment">process the user input</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
+						@Controller
+						public class HomeController {
+							@PostMapping("/register")
+							public String register(@Valid @ModelAttribute("newUser") User newUser, 
+							BindingResult result, Model model, HttpSession session) {
+								User user = userService.register(newUser, result);
+								if (result.hasErrors()) {
+									model.addAttribute("newLogin", new LoginUser());
+									return "index.jsp";
+								}
+								session.setAttribute("userId", user.getId());
+								return "redirect:/welcome";
+							}
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>HomeController.java</code></h4>
+					<p class="fragment">use the register method in the UserService</p>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="6">
+						@Controller
+						public class HomeController {
+							@PostMapping("/register")
+							public String register(@Valid @ModelAttribute("newUser") User newUser, 
+							BindingResult result, Model model, HttpSession session) {
+								User user = userService.register(newUser, result);
+								if (result.hasErrors()) {
+									model.addAttribute("newLogin", new LoginUser());
+									return "index.jsp";
+								}
+								session.setAttribute("userId", user.getId());
+								return "redirect:/welcome";
+							}
+						}
+					</code></pre>
+				</section>
+
+
+				<section data-auto-animate>
+					<h4 data-id="code-title"><code>UserService.java</code></h4>
+					<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="4|6-7|10-11|14-15|18|20|22">
+					@Service
+					public class UserService {
+						public User register(User newUser, BindingResult result) {
+							Optional&lt;User&lt; potentialUser = userRepository.findByEmail(newUser.getEmail());
+							// Reject if email is taken (present in database)
+							if(potentialUser.isPresent()) {
+								result.rejectValue("email", "Matches", "An account with that email already exists!");
+							}
+							// Reject if password doesn't match confirmation
+							if(!newUser.getPassword().equals(newUser.getConfirm())) {
+								result.rejectValue("confirm", "Matches", "The Confirm Password must match Password!");
+							}
+							// Return null if result has errors
+							if(result.hasErrors()) {
+								return null;
+							}
+							// hash password
+							String hashed = BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt());
+							// set password
+							newUser.setPassword(hashed);
+							// save user to database
+							return userRepository.save(newUser);
+						}
+					}
+					</code></pre>
+				</section>
+
+			</section>
+
+		
+	</div>
+</div>
+
+<script src="../../dist/reveal.js"></script>
+<script src="../../plugin/zoom/zoom.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/search/search.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+
+			// Also available as an ES module, see:
+			// https://revealjs.com/initialization/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				width: 1200,
+				height: 600,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+			});
+		</script>
+
+	</body>
+</html>
