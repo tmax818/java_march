@@ -11,10 +11,10 @@
 - Conditionals & Operators
 - Switch and Ternary
 - [CafeJava Practice](./demos/cafejava/README.md)
-- Strings
-- Methods
-- Modularization
-- AlfredBot Practice
+- [Strings](./demos/strings/Strings.java)
+- [Methods](./demos/methods/README.md)
+- [Modularization](./demos/modularization/README.md)
+- [AlfredBot Practice](./demos/alfredbot/README.md)
 - Type Casting
 - Fixed Arrays
 - Dynamic Arrays
