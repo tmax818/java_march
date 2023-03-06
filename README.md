@@ -5,9 +5,9 @@
 
 - Why Java?
 - How Does Java Work
-- [Hello World](./demos/helloworld/Main.java)
-- [First Java Program](./demos/firstjavaprogram/README.md)
-- [Variables](./demos/variables/Variables.java)
+- [Hello World](./demos/fundamentals/helloworld/Main.java)
+- [First Java Program](./demos/fundamentals/firstjavaprogram/README.md)
+- [Variables](./demos/fundamentals/variables/Variables.java)
 
 |Type|	Size in Bytes|	Range|
 |----|---------------|-------|
@@ -22,17 +22,22 @@
 
 - Conditionals & Operators
 - Switch and Ternary
-- [CafeJava Practice](./demos/cafejava/README.md)
-- [Strings](./demos/strings/Strings.java)
-- [Methods](./demos/methods/README.md)
-- [Modularization](./demos/modularization/README.md)
-- [AlfredBot Practice](./demos/alfredbot/README.md)
-- [Type Casting](./demos/typecasting/TypeCasting.java)
-- [Fixed Arrays](./demos/fixedarrays/FixedArrays.java)
-- [Dynamic Arrays](./demos/dynamicarrays/DynamicArrays.java)
+- [CafeJava Practice](./demos/fundamentals/cafejava/README.md)
+- [Strings](./demos/fundamentals/strings/Strings.java)
+- [Methods](./demos/fundamentals/methods/README.md)
+- [Modularization](./demos/fundamentals/modularization/README.md)
+- [AlfredBot Practice](./demos/fundamentals/alfredbot/README.md)
+- [Type Casting](./demos/fundamentals/typecasting/TypeCasting.java)
+- [Fixed Arrays](./demos/fundamentals/fixedarrays/FixedArrays.java)
+- [Dynamic Arrays](./demos/fundamentals/dynamicarrays/DynamicArrays.java)
 - Loops
-- [CafeBusinessLogic Core](./demos/cafebusinesslogic/README.md)
+- [CafeBusinessLogic Core](./demos/fundamentals/cafebusinesslogic/README.md)
 - Puzzling Practice
 - Maps
 - Map of the Hashmatique Practice
 - Exceptions
+
+## Java OOP
+
+- [Objects and Classes](./demos/oop/objectsclasses/README.md)
+- [Tesla](./demos/oop/tesla/README.md)

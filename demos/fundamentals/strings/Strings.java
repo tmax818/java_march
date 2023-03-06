@@ -1,4 +1,4 @@
-package demos.strings;
+package demos.fundamentals.strings;
 
 public class Strings {
 

@@ -1,4 +1,4 @@
-package demos.helloworld;
+package demos.fundamentals.helloworld;
 
 
 public class Main {

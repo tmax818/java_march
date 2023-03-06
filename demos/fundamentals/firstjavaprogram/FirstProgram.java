@@ -1,4 +1,4 @@
-package demos.firstjavaprogram;
+package demos.fundamentals.firstjavaprogram;
 
 public class FirstProgram {
 

@@ -1,4 +1,4 @@
-package demos.fixedarrays;
+package demos.fundamentals.fixedarrays;
 
 import java.util.Arrays;
 

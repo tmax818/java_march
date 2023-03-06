@@ -1,4 +1,4 @@
-package demos.variables;
+package demos.fundamentals.variables;
 
 
 

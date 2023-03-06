@@ -1,4 +1,4 @@
-package demos.methods;
+package demos.fundamentals.methods;
 
 
 public class Main {

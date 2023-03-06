@@ -1,4 +1,4 @@
-package demos.typecasting;
+package demos.fundamentals.typecasting;
 
 public class TypeCasting {
 

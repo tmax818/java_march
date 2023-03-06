@@ -1,4 +1,4 @@
-package demos.dynamicarrays;
+package demos.fundamentals.dynamicarrays;
 
 import java.util.ArrayList;
 
