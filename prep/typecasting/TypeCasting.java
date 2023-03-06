@@ -1,4 +1,4 @@
-package demos.typecasting;
+package prep.typecasting;
 
 public class TypeCasting {
 
@@ -8,7 +8,6 @@ public class TypeCasting {
         double dd = 35.99;
         
         // casting the double d into a int
-        // double is 8 bytes, while int is 4 bytes
         int i = (int) d;
         
         // casting the double dd into a int

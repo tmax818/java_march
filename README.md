@@ -28,10 +28,10 @@
 - [Modularization](./demos/modularization/README.md)
 - [AlfredBot Practice](./demos/alfredbot/README.md)
 - [Type Casting](./demos/typecasting/TypeCasting.java)
-- Fixed Arrays
-- Dynamic Arrays
+- [Fixed Arrays](./demos/fixedarrays/FixedArrays.java)
+- [Dynamic Arrays](./demos/dynamicarrays/DynamicArrays.java)
 - Loops
-- CafeBusinessLogic Core
+- [CafeBusinessLogic Core](./demos/cafebusinesslogic/README.md)
 - Puzzling Practice
 - Maps
 - Map of the Hashmatique Practice
