@@ -1,5 +1,8 @@
 package algos.day01;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Basic13 {
 
 /**
@@ -7,23 +10,60 @@ public class Basic13 {
  * 
  */
 
-public void Basic01(){}
+public void Basic01(){
+    for(int i = 1; i < 256; i++){
+        System.out.println(i);
+    }
+}
 
 /**
  * Print integers from 0 to 255, and with each integer print the sum so far.
  */
-public void Basic02(){}
-
+public static void Basic02(){
+    int sum = 0;
+    for(int i = 0; i < 256; i++){
+        sum += i;
+        System.out.println(i);
+        System.out.println(sum);
+}
+}
 
 /**
  * Given an array, find and print its largest element.
  */
-public void Basic03(){}
+public void Basic03(int[] arr){
+    int largest = arr[0];
+    for(int i = 1; i < arr.length; i++){
+        if(arr[i] > largest){
+            largest = arr[i];
+        }
+    }
+    System.out.println(largest);
+}
 /**
  * Create an array with all the odd integers between 1 and 255 (inclusive).
 
  */
-public void Basic04(){}
+public void Basic04(){
+    int[] odds = new int[256/2];
+    System.out.println(Arrays.toString(odds));
+    int oddidx= 0;
+    for(int i = 1; i < 257; i++){
+        if(i % 2 != 0){
+            odds[oddidx] = i;
+            oddidx++;
+        }
+    }
+    System.out.println(Arrays.toString(odds));
+}
+public void Basic04Easy(){
+    ArrayList<Integer> odds = new ArrayList<>();
+    for(int i = 1; i < 256; i += 2){
+        odds.add(i);
+    }
+    System.out.println(odds);
+}
+
 /**
  * Given an array and a value Y, count and print the number of array values greater than Y.
  */
