@@ -5,7 +5,7 @@
 
 - Why Java?
 - How Does Java Work
-- Hello World
+- [Hello World](./demos/helloworld/Main.java)
 - [First Java Program](./demos/firstjavaprogram/README.md)
 - [Variables](./demos/variables/Variables.java)
 
