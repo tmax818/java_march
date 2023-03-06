@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"demos.alfredbot","c":"AlfredQuotes","l":"AlfredQuotes()","u":"%3Cinit%3E()"},{"p":"demos.alfredbot","c":"AlfredQuotes","l":"someMethod()"}];updateSearchResults();
