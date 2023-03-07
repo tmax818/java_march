@@ -37,6 +37,6 @@ class Tesla {
 
     // methods
     public void drive(){
-        
+        System.out.println("silence");
     }
 }
