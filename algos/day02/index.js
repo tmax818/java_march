@@ -3,24 +3,9 @@
  * linked to other Node instances to form a list of linked nodes.
  */
 class ListNode {
-    /**
-     * Constructs a new Node instance. Executed when the 'new' keyword is used.
-     * @param {any} data The data to be added into this new instance of a Node.
-     *    The data can be anything, just like an array can contain strings,
-     *    numbers, objects, etc.
-     * @returns {ListNode} A new Node instance is returned automatically without
-     *    having to be explicitly written (implicit return).
-     */
+
     constructor(data) {
       this.data = data;
-      /**
-       * This property is used to link this node to whichever node is next
-       * in the list. By default, this new node is not linked to any other
-       * nodes, so the setting / updating of this property will happen sometime
-       * after this node is created.
-       *
-       * @type {ListNode|null}
-       */
       this.next = null;
     }
   }
@@ -47,7 +32,9 @@ class ListNode {
      * - Space: O(?).
      * @returns {boolean}
      */
-    isEmpty() {}
+    isEmpty() {
+      return this.head === null;
+    }
   
     /**
      * Creates a new node with the given data and inserts it at the back of
@@ -57,7 +44,26 @@ class ListNode {
      * @param {any} data The data to be added to the new node.
      * @returns {SinglyLinkedList} This list.
      */
-    insertAtBack(data) {}
+    insertAtBack(data) {
+      const newBack = new ListNode(data)
+
+      // the list is empty
+      if(this.isEmpty()){
+        this.head = newBack
+        return this;
+      }
+
+      // the list is not empty
+      let runner = this.head
+
+      while(runner.next !== null){
+        runner = runner.next
+
+      }
+      runner.next = newBack
+      return this
+
+    }
   
     /**
      * Creates a new node with the given data and inserts it at the back of
@@ -132,3 +138,10 @@ class ListNode {
   
   // Print your list like so:
   // console.log(firstThreeList.toArr());
+
+  const sll = new SinglyLinkedList()
+  sll.insertAtBack(1)
+  sll.insertAtBack(2)
+  sll.insertAtBack(3)
+  sll.insertAtBack(4)
+  console.log(sll.toArr())
