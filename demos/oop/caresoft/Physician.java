@@ -31,14 +31,21 @@ public class Physician extends User implements HIPAACompliantUser {
 
     @Override
     public boolean assignPin(int pin) {
-        return false;
+        if(pin > 1000 && pin < 9999){
+            return true;
+        } else {
+            return false;
+        }
         
   
     }
 
     @Override
     public boolean accessAuthorized(Integer confirmedAuthID) {
-        return false;
+        System.out.println(confirmedAuthID);
+        System.out.println(this.id);
+        return (this.id == confirmedAuthID);
+        
 
     }
 	
