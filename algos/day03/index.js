@@ -10,40 +10,18 @@ class ListNode {
     }
   }
   
-  /**
-   * This class keeps track of the start (head) of the list and to store all the
-   * functionality (methods) that each list should have.
-   */
+
   class SinglyLinkedList {
-    /**
-     * Constructs a new instance of an empty linked list that inherits all the
-     * methods.
-     * @returns {SinglyLinkedList} The new list that is instantiated is implicitly
-     *    returned without having to explicitly write "return".
-     */
+
     constructor() {
-      /** @type {ListNode|null} */
       this.head = null;
     }
   
-    /**
-     * Determines if this list is empty.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @returns {boolean}
-     */
     isEmpty() {
       return this.head === null;
     }
   
-    /**
-     * Creates a new node with the given data and inserts it at the back of
-     * this list.
-     * - Time: O(?).
-     * - Space: O(?).
-     * @param {any} data The data to be added to the new node.
-     * @returns {SinglyLinkedList} This list.
-     */
+
     insertAtBack(data) {
       const newBack = new ListNode(data)
 
