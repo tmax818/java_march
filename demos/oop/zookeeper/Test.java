@@ -7,6 +7,7 @@ class Test {
     public static void main(String[] args) {
         Gorilla g = new Gorilla(100);
         Gorilla kingKong = new Gorilla(100);
+        Mammal m = new Mammal();
         kingKong.eatBanana();
         g.throwSomething();
         g.eatBanana();

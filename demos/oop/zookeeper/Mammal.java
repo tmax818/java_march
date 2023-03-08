@@ -1,12 +1,14 @@
 package demos.oop.zookeeper;
 
-public class Mammal {
+abstract public class Mammal {
     private int energyLevel = 100;
 
 
     public Mammal(int energyLevel) {
         this.energyLevel = energyLevel;
     }
+
+    abstract public void growHair();
 
 
 

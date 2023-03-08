@@ -3,5 +3,6 @@
         "alfredbot",
         "firstjavaprogram",
         "Hashmatique"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

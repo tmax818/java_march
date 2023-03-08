@@ -19,5 +19,11 @@ public class Gorilla extends Mammal {
         System.out.println("The gorilla threw something");
 
     }
+
+    @Override
+    public void growHair() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'growHair'");
+    }
     
 }

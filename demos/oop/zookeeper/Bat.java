@@ -15,6 +15,11 @@ public class Bat extends Mammal implements Flyable {
 
     }
 
+    @Override
+    public void growHair() {
+
+    }
+
 
 
    
