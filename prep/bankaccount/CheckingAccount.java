@@ -7,6 +7,16 @@ public class CheckingAccount extends BankAccount {
 
     }
 
+    @Override
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    @Override
+    public void withdraw(double amount) {
+
+    }
+
 
 
 
