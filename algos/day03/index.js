@@ -53,7 +53,18 @@ class ListNode {
      *    or null when the end of the list has been reached.
      * @returns {SinglyLinkedList} This list.
      */
-    insertAtBackRecursive(data, runner = this.head) {}
+    insertAtBackRecursive(data, runner = this.head) {
+      if(this.isEmpty()){
+        this.head = new ListNode(data)
+        return this
+      }
+
+      if(runner.next === null){
+        runner.next = new ListNode(data)
+        return this
+      }
+      return this.insertAtBackRecursive(data, runner.next);
+    }
   
     /**
      * Calls insertAtBack on each item of the given array.
@@ -85,7 +96,7 @@ class ListNode {
       }
       return arr;
     }
-
+//! WEDNESDAY ////////////
     /**
  * Creates a new node with the given data and inserts that node at the front
  * of this list.
@@ -94,7 +105,14 @@ class ListNode {
  * @param {any} data The data for the new node.
  * @returns {SinglyLinkedList} This list.
  */
-insertAtFront(data) {}
+insertAtFront(data) {
+  const newHead = new ListNode(data)
+  newHead.next = this.head
+  this.head = newHead
+  return this
+
+
+}
 
 /**
  * Removes the first node of this list.
@@ -102,7 +120,17 @@ insertAtFront(data) {}
  * - Space: (?).
  * @returns {any} The data from the removed node.
  */
-removeHead() {}
+removeHead() {
+  if(this.isEmpty()){
+    return null
+  }
+  let thedata = this.head.data
+  this.head = this.head.next
+  return thedata
+  
+
+}
+
 
 // EXTRA
 /**
@@ -111,7 +139,23 @@ removeHead() {}
  * - Space: (?).
  * @returns {number|NaN} The average of the node's data.
  */
-average() {}
+average() {
+  let runner = this.head
+  let sum = 0;
+  let count = 0;
+
+  while(runner){
+    count++;
+    sum += runner.data;
+    runner = runner.next;
+  }
+  let avg = sum/count
+  if( count === 0){
+    return "empty list"
+  } else {
+    return avg;
+  }
+}
 
 
   }
@@ -150,5 +194,6 @@ average() {}
   sll.insertAtBack(1)
   sll.insertAtBack(2)
   sll.insertAtBack(3)
-  sll.insertAtBack(4)
+  // console.log(sll.removeHead())
+  console.log(sll.average())
   console.log(sll.toArr())
