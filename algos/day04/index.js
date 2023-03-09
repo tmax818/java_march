@@ -142,7 +142,31 @@ average() {
  * - Space: O(?).
  * @returns {any} The data from the node that was removed.
  */
-removeBack() {}
+removeBack() {
+  // case 1: we have an empty list
+  if(this.isEmpty()){
+    return null
+  }
+  // case 2: we have a list with one node
+  if(this.head.next === null){
+   return this.removeHead();  
+  }
+
+  // case 3: more than one node
+  let runner = this.head
+
+  while(runner.next.next){
+    runner = runner.next
+  }
+  console.log(runner)
+  const returnData = runner.next.data
+  runner.next = null
+  return returnData;
+
+
+
+
+}
 
 /**
  * Determines whether or not the given search value exists in this list.
@@ -151,7 +175,20 @@ removeBack() {}
  * @param {any} val The data to search for in the nodes of this list.
  * @returns {boolean}
  */
-contains(val) {}
+contains(val) {
+  if(this.isEmpty()){
+    return false
+  }
+
+  let runner = this.head
+  while(runner){
+    if(runner.data === val){
+      return true
+    } 
+    runner = runner.next
+  }
+  return false
+}
 
 /**
  * Determines whether or not the given search value exists in this list.
@@ -162,7 +199,15 @@ contains(val) {}
  *    or null when the end of the list has been reached.
  * @returns {boolean}
  */
-containsRecursive(val, current = this.head) {}
+containsRecursive(val, current = this.head) {
+  if(current === null){
+    return false;
+  }
+  if(current.data === val){
+    return true;
+  }
+  return this.containsRecursive(val, current.next)
+}
 
 
   }
@@ -198,9 +243,13 @@ containsRecursive(val, current = this.head) {}
   // console.log(firstThreeList.toArr());
 
   const sll = new SinglyLinkedList()
+  console.log(sll.containsRecursive(3))
   sll.insertAtBack(1)
   sll.insertAtBack(2)
   sll.insertAtBack(3)
-  // console.log(sll.removeHead())
-  console.log(sll.average())
+  // console.log(sll.removeBack())
+  // console.log(sll.average())
+  // console.log(sll.contains(3))
+  console.log(sll.containsRecursive(3))
+  console.log(sll.containsRecursive(42))
   console.log(sll.toArr())
