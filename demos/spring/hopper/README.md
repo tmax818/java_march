@@ -7,7 +7,7 @@
 spring.mvc.view.prefix=/WEB-INF/
 ```
 
-- [ ] Make our [MainController](./src/main/java/tyler/hopper/MainController.java). <span style="color:red">WARNING!!</span> This link won't work in your file!!!
+- [ ] Make our [MainController](./src/main/java/tyler/hopper/MainController.java). :warning:<span style="color:red">WARNING!!</span> :warning: This link won't work in your file!!!
 
 ```java
 // class definition and imports here...
