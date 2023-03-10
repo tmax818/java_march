@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- c:out ; c:forEach etc. --> 
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!-- Formatting (dates) --> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
+<!-- form:form -->
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- for rendering errors on PUT routes -->
+<%@ page isErrorPage="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Grace</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script><!-- change to match your file/naming structure -->
+</head>
+<body>
+    <h1>Grace Hopper</h1>
+    <div class="container">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/9eyFDBPk4Yw" allowfullscreen></iframe>
+        </div>
+    <!-- <div class="card">
+        <h1>Receipt for: ${name}</h1>
+        <h2>
+            Item name: <c:out value="${itemName}" ></c:out>
+        </h2>
+        <p>description: ${description}</p>
+        <p>price:$${price}</p>
+        <p>vendor: ${vendor}</p>
+    </div> -->
+
+    <c:forEach var="item" items="${items}">
+        <div class="card">
+            <h1>Receipt for: ${name}</h1>
+            <h2>
+                Item name: <c:out value="${item.itemName}" ></c:out>
+            </h2>
+            <p>description: ${item.description}</p>
+            <p>price:$${item.price}</p>
+            <p>vendor: ${item.vendor}</p>
+        </div>
+    </c:forEach>
+    </div>
+</body>
+</html>
+

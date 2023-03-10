@@ -45,4 +45,4 @@
 
 ## Spring
 
-- [Hello World](./demos/spring/daikichi/README.md)
+- [Daikichi Demo](./demos/spring/daikichi/README.md)
