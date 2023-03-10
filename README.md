@@ -46,3 +46,4 @@
 ## Spring
 
 - [Daikichi Demo](./demos/spring/daikichi/README.md)
+- [Hopper Demo](./demos/spring/hopper/README.md)
