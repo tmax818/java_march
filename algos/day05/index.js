@@ -218,7 +218,23 @@ containsRecursive(val, current = this.head) {
  * @returns {any} The data of the second to last node or null if there is no
  *    second to last node.
  */
-secondToLast() {}
+secondToLast() {
+
+  if(this.isEmpty()){
+    return null
+  }
+
+  if(this.head.next === null){
+    return null
+  }
+
+  let runner = this.head
+
+  while(runner.next.next){
+    runner = runner.next
+  }
+  return runner.data;
+}
 
 /**
  * Removes the node that has the matching given val as it's data.
@@ -228,7 +244,26 @@ secondToLast() {}
  *    node to be removed.
  * @returns {boolean} Indicates if a node was removed or not.
  */
-removeVal(val) {}
+removeVal(val) {
+  if(this.isEmpty()){
+    return false;
+  }
+
+  if(this.head.data === val){
+    this.removeHead()
+    return true;
+  }
+
+  let runner = this.head
+  while(runner.next){
+    if(runner.next.data === val){
+        runner.next = runner.next.next;
+        return true;
+    }
+    runner = runner.next
+  }
+  return false;
+}
 
 // EXTRA
 /**
@@ -276,13 +311,10 @@ prepend(newVal, targetVal) {}
   // console.log(firstThreeList.toArr());
 
   const sll = new SinglyLinkedList()
-  console.log(sll.containsRecursive(3))
+
   sll.insertAtBack(1)
   sll.insertAtBack(2)
   sll.insertAtBack(3)
-  // console.log(sll.removeBack())
-  // console.log(sll.average())
-  // console.log(sll.contains(3))
-  console.log(sll.containsRecursive(3))
-  console.log(sll.containsRecursive(42))
+  sll.insertAtBack(4)
+  console.log(sll.removeVal(42))
   console.log(sll.toArr())
