@@ -1,5 +1,11 @@
-
 # Hopper Receipt
+
+- [ ] update [application.properties](./src/main/resources/application.properties)
+
+```
+# Where are jsp files? HERE!
+spring.mvc.view.prefix=/WEB-INF/
+```
 
 - [ ] Make our [MainController](./src/main/java/tyler/hopper/MainController.java)
 
@@ -22,12 +28,6 @@
     
 ```
 
-- [ ] update [application.properties](./src/main/resources/application.properties)
-
-```
-# Where are jsp files? HERE!
-spring.mvc.view.prefix=/WEB-INF/
-```
 
 - [ ] add dependencies to [pom.xml](./pom.xml)
 
