@@ -47,3 +47,8 @@
 
 - [Daikichi Demo](./demos/spring/daikichi/README.md)
 - [Hopper Demo](./demos/spring/hopper/README.md)
+
+
+## Spring MVC
+
+- [Checklist](./demos/README.md)
