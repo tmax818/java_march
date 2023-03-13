@@ -288,17 +288,17 @@ prepend(newVal, targetVal) {}
  * @returns {SinglyLinkedList} This list with the added nodes.
  */
 concat(addList) {
-  if(this.isEmpty()){
-    this.head = addList.head
-    return this;
+  let runner = this.head
+
+  if(runner === null){
+    this.head = addList.head;
   } else {
-    let runner = this.head
-    while(runner.next !== null){
-      runner = runner.next
+    while(runner.next){
+      runner = runner.next;
     }
     runner.next = addList.head
-    return this;
   }
+  return this;
 }
 
 /**
@@ -309,34 +309,8 @@ concat(addList) {
  * @returns {SinglyLinkedList} This list.
  */
 moveMinToFront() {
+  // empty list?
   if(this.isEmpty()){
-    return this;
-  }
-
-  let minNode = this.head;
-  let runner = this.head.next;
-
-  while(runner){
-    if(runner.data < minNode.data){
-      minNode = runner
-    }
-    runner = runner.next;
-  }
-  console.log("runner:", runner)
-  console.log("minNode: ", minNode)
-  this.removeVal(minNode.data)
-  this.insertAtFront(minNode.data)
-  return this;
-}
-
-moveMinFrontSol() {
-  /* 
-    Alternatively, we could swap the data only in min node and head,
-    but it's better to swap the nodes themselves in case anyone has variables
-    pointing to these nodes already so that we don't unexpectedly change the
-    the data in those nodes potentially causing unwanted side-effects.
-  */
-  if (this.isEmpty()) {
     return this;
   }
 
@@ -344,29 +318,24 @@ moveMinFrontSol() {
   let runner = this.head;
   let prev = this.head;
 
-  while (runner) {
-    if (runner.data < minNode.data) {
-      minNode = runner;
+  while(runner.next){
+    if(runner.next.data < minNode.data){
+      prev = runner;
+      minNode = runner.next;
     }
 
     runner = runner.next;
   }
-  // now that we know the min, if it is already the head, nothing needs to be done
-  if (minNode === this.head) {
+
+  if(minNode === this.head){
     return this;
   }
 
-  runner = this.head;
-
-  while (runner !== minNode) {
-    prev = runner;
-    runner = runner.next;
-  }
-
-  prev.next = minNode.next; // remove the minNode
+  prev.next = minNode.next;
   minNode.next = this.head;
   this.head = minNode;
   return this;
+
 }
 
 // EXTRA
@@ -416,17 +385,12 @@ splitOnVal(val) {}
   // console.log(firstThreeList.toArr());
 
   const sll = new SinglyLinkedList()
-  const addSll = new SinglyLinkedList()
 
   sll.insertAtBack(1)
   sll.insertAtBack(2)
   sll.insertAtBack(3)
   sll.insertAtBack(4)
-  addSll.insertAtBack(5)
-  addSll.insertAtBack(0)
-  addSll.insertAtBack(6)
-  addSll.insertAtBack(7)
-  sll.concat(addSll)
+  sll.insertAtBack(-1)
   // console.log(sll.removeVal(42))
   sll.moveMinToFront()
   console.log(sll.toArr())
