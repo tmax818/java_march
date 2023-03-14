@@ -52,3 +52,4 @@
 ## Spring MVC
 
 - [Checklist](./demos/README.md)
+- [Books Demo](./demos/spring/booksdemo/README.md)
