@@ -15,20 +15,6 @@ spring.jpa.hibernate.ddl-auto=update
 spring.mvc.hiddenmethod.filter.enabled=true
 ```
 
-- [ ] Make our [MainController](./src/main/java/tyler/booksdemo/controllers/MainController.java). :warning:<span style="color:red">WARNING!!</span> :warning: This link won't work in your file!!!
-
-```java
-@Controller
-public class MainController {
-
-    //! READ ALL
-    @GetMapping("/")
-    public String index(){
-        return "index.jsp";
-    }
-}
-    
-```
 
 
 - [ ] add dependencies to [pom.xml](./pom.xml)
@@ -58,7 +44,7 @@ For Bootstrap add:
             <version>5.2.3</version>
         </dependency>
 ```
-
+## View
 - [ ] add [index.jsp](./src/main/webapp/WEB-INF/index.jsp)
 
 ```html
@@ -88,3 +74,26 @@ For Bootstrap add:
 
 
 ```
+## Controller
+- [ ] Make our [MainController](./src/main/java/tyler/booksdemo/controllers/MainController.java). :warning:<span style="color:red">WARNING!!</span> :warning: This link won't work in your file!!!
+
+```java
+@Controller
+public class MainController {
+
+    //! READ ALL
+    @GetMapping("/")
+    public String index(){
+        return "index.jsp";
+    }
+}
+    
+```
+
+## Model
+
+- [ ] Created [Book.java](src/main/java/tyler/booksdemo/models/Book.java)
+
+## ORM(Object Relational Mapper)
+
+- [ ] Create [BookRepository.java](src/main/java/tyler/booksdemo/repositories/BookRepository.java)
