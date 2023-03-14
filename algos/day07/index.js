@@ -44,7 +44,9 @@ class BSTNode {
      * - Space: O(?).
      * @returns {boolean} Indicates if this tree is empty.
      */
-    isEmpty() {}
+    isEmpty() {
+        return this.root === null;
+    }
   
     /**
      * Retrieves the smallest integer data from this tree.
@@ -54,7 +56,15 @@ class BSTNode {
      *    the tree is being traversed.
      * @returns {number} The smallest integer from this tree.
      */
-    min(current = this.root) {}
+    min(current = this.root) {
+        if(this.isEmpty()){
+            return null
+        }
+        while(current.left){
+            current = current.left
+        }
+        return current.data;
+    }
   
     /**
      * Retrieves the smallest integer data from this tree.
@@ -163,3 +173,12 @@ class BSTNode {
   //   .insert(44)
   //   .insert(66)
   //   .insert(90);
+
+  const tree = new BinarySearchTree()
+  console.log(tree.min())
+  const rootNode = new BSTNode(50)
+  tree.root = rootNode
+  tree.root.left = new BSTNode(5)
+  tree.root.left.left = new BSTNode(4)
+  tree.root.left.left.left = new BSTNode(3)
+
