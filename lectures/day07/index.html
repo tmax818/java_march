@@ -358,10 +358,7 @@
 			</section>
 			<section data-auto-animate>
 				<h4 data-id="code-title"><code>BookController.java</code></h4>
-				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="2|3|9">
-					import org.springframework.web.bind.annotation.GetMapping;
-					import org.springframework.validation.BindingResult;
-					import org.springframework.web.bind.annotation.ModelAttribute;
+				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
 
 					@Controller
 					public class BooksController {
@@ -375,32 +372,31 @@
 				</code></pre>
 			</section>
 			<section data-auto-animate>
+				<h4 data-id="code-title"><code>BookController.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
+
+					@Controller
+					public class BooksController {
+						
+						@GetMapping("/books/new")
+						public String newBook(@ModelAttribute("book") Book book) {
+							return "/books/new.jsp";
+						}
+
+						@PostMapping("/books")
+						public String create(@ModelAttribute("book") Book book) {
+								bookService.createBook(book);
+
+						}
+					}					
+				</code></pre>
+			</section>
+			<section data-auto-animate>
 				<h4 data-id="code-title"><code>new.jsp</code></h4>
-				<pre data-id="code-animation"><code width="400px"  class="hljs r-fit" data-trim data-line-numbers="4|6|7|8">
-					<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-					<%@ page isErrorPage="true" %>    
-					<h1>New Book</h1>
+				<pre data-id="code-animation"><code width="400px"  class="hljs r-fit" data-trim data-line-numbers="">
 					<form:form action="/books" method="post" modelAttribute="book">
-						<p>
-							<form:label path="title">Title</form:label>
-							<form:errors path="title"/>
-							<form:input path="title"/>
-						</p>
-						<p>
-							<form:label path="description">Description</form:label>
-							<form:errors path="description"/>
-							<form:textarea path="description"/>
-						</p>
-						<p>
-							<form:label path="language">Language</form:label>
-							<form:errors path="language"/>
-							<form:input path="language"/>
-						</p>
-						<p>
-							<form:label path="numberOfPages">Pages</form:label>
-							<form:errors path="numberOfPages"/>     
-							<form:input type="number" path="numberOfPages"/>
-						</p>    
+						. . . 
+   
 						<input type="submit" value="Submit"/>
 					</form:form>    
 					
@@ -408,40 +404,121 @@
 				</code></pre>
 			</section>
 			<section data-auto-animate>
-				<h4 data-id="code-title"><code>BookController.java</code></h4>
-				<pre data-id="code-animation"><code  class="hljs" data-trim data-line-numbers="9|10|11|13">
-					import org.springframework.web.bind.annotation.GetMapping;
-					import org.springframework.validation.BindingResult;
-					import org.springframework.web.bind.annotation.ModelAttribute;
+				<h4 data-id="code-title"><code>BookService.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs" data-trim data-line-numbers="">
+					@Service
+					public class BookService {
 					
+						@Autowired BookRepository bookRepository;
+					
+						public void createBook(Book book) {
+							bookRepository.save(book);
+						}
+						
+					}	
+				</code></pre>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h1>Update</h1>
+				<p class="fragment"> <code>@ModelAttribute</code> & Data Binding</p>
+			</section>
+			<section data-auto-animate>
+				<h4 data-id="code-title"><code>BookController.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
 					@Controller
 					public class BooksController {
 						
-						@PostMapping("/books")
-						public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
-							if (result.hasErrors()) {
-								return "/books/new.jsp";
-							} else {
-								bookService.createBook(book);
-								return "redirect:/books";
-							}
+						@GetMapping("/books/edit/{id}")
+						public String edit(@PathVariable("id")Long id, Model model){
+							Book book = bookService.getOneBook(id);
+							model.addAttribute("book", book);
+							return "edit.jsp";
 						}
-					}		
+					}
 				</code></pre>
 			</section>
 			<section data-auto-animate>
-				<h4 data-id="code-title"><code>Book.java</code></h4>
-				<pre data-id="code-animation"><code  class="hljs" data-trim data-line-numbers="">
+				<h4 data-id="code-title"><code>BookController.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
+					@Controller
+					public class BooksController {
+						
+						@GetMapping("/books/edit/{id}")
+						public String edit(@PathVariable("id")Long id, Model model){
+							Book book = bookService.getOneBook(id);
+							model.addAttribute("book", book);
+							return "edit.jsp";
+						}
 
-					@Size(min = 3, max = 40, message="Language must be at least 3 characters.")
-					private String language;
-	
-					@NotNull
-					@Min(value=100, message="Must be at least 100 pages.")
-					private Integer numberOfPages;
-			
+						@PutMapping("/books/{id}")
+						public String update(@PathVariable("id")Long id, @ModelAttribute("book")Book book, Model model){
+								bookService.updateBook(book);
+								return "redirect:/";
+						}
+					}
+
+					
 				</code></pre>
 			</section>
+
+			<section data-auto-animate>
+				<h4 data-id="code-title"><code>edit.jsp</code></h4>
+				<pre data-id="code-animation"><code width="400px"  class="hljs r-fit" data-trim data-line-numbers="">   
+					<h1>Edit Book</h1>
+					<form:form action="/books/${book.id}" method="post" modelAttribute="book">
+						...
+						<input type="submit" value="Submit"/>
+					</form:form>    
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h4 data-id="code-title"><code>edit.jsp</code></h4>
+				<pre data-id="code-animation"><code width="400px"  class="hljs r-fit" data-trim data-line-numbers="">   
+					<h1>Edit Book</h1>
+					<form:form action="/books/${book.id}" method="post" modelAttribute="book">
+						<input type="hidden" name="_method" value="put">
+						...
+						<input type="submit" value="Submit"/>
+					</form:form>    
+				</code></pre>
+			</section>
+			<section data-auto-animate>
+				<h4 data-id="code-title"><code>BookController.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs r-fit" data-trim data-line-numbers="">
+					@Controller
+					public class BooksController {
+						...
+
+						@PutMapping("/books/{id}")
+						public String update(@PathVariable("id")Long id, @ModelAttribute("book")Book book, Model model){
+								bookService.updateBook(book);
+								return "redirect:/";
+						}
+					}
+
+					
+				</code></pre>
+			</section>
+
+			<section data-auto-animate>
+				<h4 data-id="code-title"><code>BookService.java</code></h4>
+				<pre data-id="code-animation"><code  class="hljs" data-trim data-line-numbers="">
+					@Service
+					public class BookService {
+					
+						@Autowired BookRepository bookRepository;
+					
+						public void updateBook(Book book) {
+							bookRepository.save(book);
+						}
+						
+					}	
+				</code></pre>
+			</section>
+		
+
 		</section>
 			
 
