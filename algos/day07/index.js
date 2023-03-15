@@ -74,7 +74,17 @@ class BSTNode {
      *    the tree is being traversed.
      * @returns {number} The smallest integer from this tree.
      */
-    minRecursive(current = this.root) {}
+    minRecursive(current = this.root) {
+      if(current === null){
+        return null
+      }
+
+      if(current.left === null){
+        return current.data;
+      }
+
+      return this.minRecursive(current.left)
+    }
   
     /**
      * Retrieves the largest integer data from this tree.
@@ -84,7 +94,15 @@ class BSTNode {
      *    the tree is being traversed.
      * @returns {number} The largest integer from this tree.
      */
-    max(current = this.root) {}
+    max(current = this.root) {
+      if(this.isEmpty()){
+        return null
+      }
+      while(current.right){
+        current = current.right
+      }
+      return current.data
+    }
   
     /**
      * Retrieves the largest integer data from this tree.
@@ -94,7 +112,17 @@ class BSTNode {
      *    the tree is being traversed.
      * @returns {number} The largest integer from this tree.
      */
-    maxRecursive(current = this.root) {}
+    maxRecursive(current = this.root) {
+      if(current === null){
+        return null
+      }
+
+      if(current.right === null){
+        return current.data
+      }
+
+      return this.maxRecursive(current.right)
+    }
   
     // Logs this tree horizontally with the root on the left.
     print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
@@ -175,10 +203,13 @@ class BSTNode {
   //   .insert(90);
 
   const tree = new BinarySearchTree()
-  console.log(tree.min())
   const rootNode = new BSTNode(50)
   tree.root = rootNode
   tree.root.left = new BSTNode(5)
   tree.root.left.left = new BSTNode(4)
   tree.root.left.left.left = new BSTNode(3)
+  // console.log(tree.min())
+  console.log(tree.minRecursive())
+  // console.log(tree.max())
+  // console.log(tree.maxRecursive())
 
