@@ -27,6 +27,7 @@
             <th>Author</th>
             <th>Title</th>
             <th>Pages</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -39,6 +40,14 @@
                     </a>
                 </td>
                 <td>${book.pages}</td>
+                <td>
+                    <a href="/books/edit/${book.id}">edit</a>
+                    <form action="/books/${book.id}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="submit" value="Delete">
+                    </form>
+                    
+                </td>
             </tr>
 
         </c:forEach>
