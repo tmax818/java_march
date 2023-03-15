@@ -23,6 +23,14 @@ public class Book {
     }
 
 
+    public Book(String author, String title, Integer pages) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+    }
+
+
+
     public Long getId() {
         return this.id;
     }

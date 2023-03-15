@@ -1,4 +1,4 @@
-# Session Demo
+# Books Demo
 
 
 - [ ] update [application.properties](./src/main/resources/application.properties)
@@ -9,7 +9,7 @@ spring.mvc.view.prefix=/WEB-INF/
 # Data Persistence
 spring.datasource.url=jdbc:mysql://localhost:3306/<<YOUR_SCHEMA_NAME>>
 spring.datasource.username=root
-spring.datasource.password=root
+spring.datasource.password=<<root or rootroot>>
 spring.jpa.hibernate.ddl-auto=update
 # For Update and Delete method hidden inputs
 spring.mvc.hiddenmethod.filter.enabled=true
@@ -44,8 +44,8 @@ For Bootstrap add:
             <version>5.2.3</version>
         </dependency>
 ```
-## View
-- [ ] add [index.jsp](./src/main/webapp/WEB-INF/index.jsp)
+## Views
+- [ ] add a view for show all [index.jsp](./src/main/webapp/WEB-INF/index.jsp)
 
 ```html
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -71,10 +71,14 @@ For Bootstrap add:
 <h1>All Books</h1>
 </body>
 </html>
-
-
 ```
-## Controller
+
+- [ ] add a view for show one [show.jsp](./src/main/webapp/WEB-INF/show.jsp)
+
+- [ ] add a view for create [new.jsp](./src/main/webapp/WEB-INF/new.jsp)
+
+
+## Controllers
 - [ ] Make our [MainController](./src/main/java/tyler/booksdemo/controllers/MainController.java). :warning:<span style="color:red">WARNING!!</span> :warning: This link won't work in your file!!!
 
 ```java
@@ -90,10 +94,14 @@ public class MainController {
     
 ```
 
-## Model
+## Models (2 layers)
+
+### persistance layer
 
 - [ ] Created [Book.java](src/main/java/tyler/booksdemo/models/Book.java)
 
-## ORM(Object Relational Mapper)
+- [ ] Create [BookRepository.java](src/main/java/tyler/booksdemo/repositories/BookRepository.java) i.e. the ORM - object relational mapper
 
-- [ ] Create [BookRepository.java](src/main/java/tyler/booksdemo/repositories/BookRepository.java)
+### service layer
+
+- [ ] Create [BookService.java](src/main/java/tyler/booksdemo/services/BookService.java) 

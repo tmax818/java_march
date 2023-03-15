@@ -19,30 +19,12 @@
 
 </head>
 <body>
-<h1>All Books</h1>
+<h1>register</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Pages</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach var="book" items="${books}">
-            <tr>
-                <td>${book.author}</td>
-                <td>
-                    <a href="/books/${book.id}">
-                        ${book.title}
-                    </a>
-                </td>
-                <td>${book.pages}</td>
-            </tr>
 
-        </c:forEach>
-    </tbody>
-</table>
+<form action="/login">
+    <input type="text" name="username" id="">
+    <input type="submit" value="register">
+</form>
 </body>
 </html>

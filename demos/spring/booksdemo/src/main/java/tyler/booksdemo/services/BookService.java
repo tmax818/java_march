@@ -23,5 +23,9 @@ public class BookService {
         Book book = optionalbook.orElse(null);
         return book;
     }
+
+    public void createBook(Book book) {
+        bookRepository.save(book);
+    }
     
 }
