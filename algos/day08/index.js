@@ -57,7 +57,7 @@ class BSTNode {
      * @returns {number} The smallest integer from this tree.
      */
     min(current = this.root) {
-        if(this.isEmpty()){
+        if(current === null){
             return null
         }
         while(current.left){
@@ -95,7 +95,7 @@ class BSTNode {
      * @returns {number} The largest integer from this tree.
      */
     max(current = this.root) {
-      if(this.isEmpty()){
+      if(current === null){
         return null
       }
       while(current.right){
@@ -123,6 +123,7 @@ class BSTNode {
 
       return this.maxRecursive(current.right)
     }
+    //////////!! THURSDAY //////////////////////////////////////
 
     /**
  * Determines if this tree contains the given searchVal.
@@ -131,9 +132,25 @@ class BSTNode {
  * @param {number} searchVal The number to search for in the node's data.
  * @returns {boolean} Indicates if the searchVal was found.
  */
+contains(searchVal) {
+  if(this.isEmpty()){
+    return false;
+  }
+  let current = this.root
 
-  //////////!! THURSDAY //////////////////////////////////////
-contains(searchVal) {}
+  while(current){
+  if(current.data === searchVal){
+    return true;
+    }
+
+  if(searchVal < current.data){
+    current = current.left
+  } else {
+    current = current.right
+  }
+  }
+  return false;
+}
 
 /**
  * Determines if this tree contains the given searchVal.
@@ -142,7 +159,24 @@ contains(searchVal) {}
  * @param {number} searchVal The number to search for in the node's data.
  * @returns {boolean} Indicates if the searchVal was found.
  */
-containsRecursive(searchVal, current = this.root) {}
+containsRecursive(searchVal, current = this.root) {
+  if(current === null){
+    return false;
+  }
+
+  if(current.data === searchVal){
+    return true;
+  }
+
+  if(searchVal < current.data){
+    return this.containsRecursive(searchVal, current.left);
+  }
+  
+  if(searchVal > current.data){
+    return this.containsRecursive(searchVal, current.right);
+
+  }
+}
 
 /**
  * Calculates the range (max - min) from the given startNode.
@@ -152,7 +186,12 @@ containsRecursive(searchVal, current = this.root) {}
  * @returns {number|null} The range of this tree or a sub tree depending on if the
  *    startNode is the root or not.
  */
-range(startNode = this.root) {}
+range(startNode = this.root) {
+  if(this.isEmpty()){
+    return null
+  }
+  return this.max(startNode) - this.min(startNode)
+}
   
     // Logs this tree horizontally with the root on the left.
     print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
@@ -235,11 +274,19 @@ range(startNode = this.root) {}
   const tree = new BinarySearchTree()
   const rootNode = new BSTNode(50)
   tree.root = rootNode
+  console.log(tree.max())
   tree.root.left = new BSTNode(5)
+  tree.root.right = new BSTNode(60)
   tree.root.left.left = new BSTNode(4)
   tree.root.left.left.left = new BSTNode(3)
   // console.log(tree.min())
-  console.log(tree.minRecursive())
+  // console.log(tree.minRecursive())
   // console.log(tree.max())
   // console.log(tree.maxRecursive())
+  console.log(tree.contains(42));
+  console.log(tree.contains(4));
+  console.log(tree.containsRecursive(42));
+  console.log(tree.containsRecursive(4));
+  console.log(tree.range(5))
+
 
