@@ -30,7 +30,8 @@ spring.mvc.hiddenmethod.filter.enabled=true
             <artifactId>jstl</artifactId>
         </dependency>
 ```
-For Bootstrap add:
+- [ ] Add dependencies for Bootstrap:
+
 ```xml
 		<!-- DEPENDENCIES FOR BOOTSTRAP -->
         <dependency>
@@ -42,6 +43,15 @@ For Bootstrap add:
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>5.2.3</version>
+        </dependency>
+```
+- [ ] Add dependencies for Validations:
+
+```xml
+        <!-- DEPENDENCY FOR USING VALIDATION ANNOTATIONS -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 ```
 ## Views
@@ -76,6 +86,8 @@ For Bootstrap add:
 - [ ] add a view for show one [show.jsp](./src/main/webapp/WEB-INF/show.jsp)
 
 - [ ] add a view for create [new.jsp](./src/main/webapp/WEB-INF/new.jsp)
+
+- [ ] add a view for update [edit.jsp](./src/main/webapp/WEB-INF/edit.jsp)
 
 
 ## Controllers

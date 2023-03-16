@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="books")
@@ -14,8 +18,16 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min=3, max=100, message="Hi, mom!!!")
     private String author;
+
+    @NotBlank
+    @Size(min=3, max=100, message="Hi, mom!!!")
     private String title;
+
+    @NotNull
+    @Min(value=1, message="Hamzeh is the Java master!!!")
     private Integer pages;
 
 

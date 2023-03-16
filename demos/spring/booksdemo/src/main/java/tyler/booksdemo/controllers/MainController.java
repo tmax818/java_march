@@ -3,9 +3,12 @@ package tyler.booksdemo.controllers;
 // java/spring imports
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,11 +41,14 @@ public class MainController {
     // passes data to service
     // @ModelAttribute = data binding returns a full book to send to the service.
     @PostMapping("/books")
-    public String createBook(
-        @ModelAttribute("book")Book book
-        ){
-        bookService.createBook(book);
-        return "redirect:/";
+    public String createBook(@Valid @ModelAttribute("book")Book book, BindingResult results){
+        if(results.hasErrors()){
+            return "books/new.jsp";
+        } else {
+            bookService.createBook(book);
+            return "redirect:/";
+        }
+
     }
     
 
@@ -81,12 +87,18 @@ public class MainController {
         model.addAttribute("book", book);
         return "books/edit.jsp";
     }
-
+    
     @PutMapping("/books/{id}")
-    public String update(@ModelAttribute("book")Book book){
-        System.out.println(book.getAuthor());
-        bookService.updateBook(book);
-        return "redirect:/";
+    public String update(@PathVariable("id")Long id, @Valid @ModelAttribute("book")Book book, BindingResult results, Model model){
+        if(results.hasErrors()){
+            // Book ebook = bookService.getOneBook(id);
+            // model.addAttribute("book", ebook);
+            System.out.println(results.getAllErrors());
+            return "books/edit.jsp";
+        } else {
+            bookService.updateBook(book);
+            return "redirect:/";
+        }
     }
 
     //! DELETE

@@ -20,6 +20,7 @@
 </head>
 <body>
     ${book}
+    ${results}
     <div class="container">
         
         <h2>Edit book</h2>
