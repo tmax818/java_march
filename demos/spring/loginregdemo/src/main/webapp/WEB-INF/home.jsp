@@ -16,6 +16,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome  ${userName}</h1>
+
+    <h1>Welcome ${user.userName}</h1>
+    <p>your email is ${user.email}</p>
+    <a href="/logout">logout</a>
 </body>
 </html>

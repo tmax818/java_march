@@ -59,26 +59,37 @@ public class HomeController {
     
     @PostMapping("/login")
     public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, 
-            BindingResult result, Model model, HttpSession session) {
+    BindingResult result, Model model, HttpSession session) {
         
         // Add once service is implemented:
-        // User user = userServ.login(newLogin, result);
-    
+        User user = userService.login(newLogin, result);
+        
         if(result.hasErrors()) {
             model.addAttribute("newUser", new User());
             return "index.jsp";
         }
-    
+        
         // No errors! 
         // TO-DO Later: Store their ID from the DB in session, 
         // in other words, log them in.
-    
+        session.setAttribute("userId", user.getId());
+        session.setAttribute("user", user);
+        
         return "redirect:/home";
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home(HttpSession session){
+        if(session.getAttribute("userId") == null){
+            return "redirect:/logout";
+        }
         return "home.jsp";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
     
 }

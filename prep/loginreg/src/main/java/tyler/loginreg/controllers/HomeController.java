@@ -78,6 +78,15 @@ public class HomeController {
         session.invalidate();
         return "redirect:/";
     }
+
+    @GetMapping("/home")
+    public String home(HttpSession session){
+        if(session.getAttribute("userId") == null){
+            return "redirect:/logout";
+        }
+        return "home.jsp";
+
+    }
     
 }
 

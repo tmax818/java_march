@@ -30,7 +30,7 @@ public class UserService {
         }
         // Reject if password doesn't match confirmation
         if(!newUser.getPassword().equals(newUser.getConfirm())){
-            result.rejectValue("password", "Password", "passwords must match");
+            result.rejectValue("confirm", "Confirm", "passwords must match");
             return null;
         }
         
@@ -47,12 +47,37 @@ public class UserService {
 
     public User login(LoginUser newLoginObject, BindingResult result) {
         // TO-DO: Additional validations!
-        return null;
+        // TO-DO - Reject values:
+        
+    	// Find user in the DB by email
+        // Reject if NOT present
+        if(!userRegistered(newLoginObject.getEmail())){
+            result.rejectValue("email", "EmailLogin", "Invalid Credentials");
+            return null;
+        }
+        User user = findUserByEmail(newLoginObject.getEmail());
+        // Reject if BCrypt password match fails
+        if(!BCrypt.checkpw(newLoginObject.getPassword(), user.getPassword())){
+            result.rejectValue("password", "Password", "Invalid Credentials");
+            return null;
+        }
+        // Return null if result has errors
+        if(result.hasErrors()){
+            return null;
+        }
+        // Otherwise, return the user object
+        return user;
     }
 
     private boolean userRegistered(String email){
         Optional<User> user = userRepository.findByEmail(email);
         return user.isPresent();
+    }
+    
+    private User findUserByEmail(String email){
+        Optional<User> user = userRepository.findByEmail(email);
+        return user.orElse(null);
+
     }
 }
 
