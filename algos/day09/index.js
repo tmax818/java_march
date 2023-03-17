@@ -203,7 +203,35 @@ range(startNode = this.root) {
  * @param {number} newVal The data to be added to a new node.
  * @returns {BinarySearchTree} This tree.
  */
-insert(newVal) {}
+insert(newVal) {
+
+  if(this.isEmpty()){
+    this.root = new BSTNode(newVal)
+  }
+
+  let current = this.root;
+
+  while(current){
+    if(newVal === current.data){
+      return this;
+    }
+    if(newVal < current.data){
+      if(current.left === null){
+        current.left = new BSTNode(newVal);
+        return this;
+      }
+      
+      current = current.left;
+    } else {
+      if(current.right === null){
+        current.right = new BSTNode(newVal)
+        return this;
+      }
+      current = current.right
+    }
+  }
+
+}
 
 /**
  * Inserts a new node with the given newVal in the right place to preserver
@@ -215,7 +243,33 @@ insert(newVal) {}
  *    the tree is being traversed.
  * @returns {BinarySearchTree} This tree.
  */
-insertRecursive(newVal, curr = this.root) {}
+insertRecursive(newVal, curr = this.root) {
+  if(this.isEmpty()){
+    this.root = new BSTNode(newVal)
+    return this;
+  }
+
+  if(newVal === curr.data){
+    return this;
+  }
+
+  if(newVal > curr.data){
+    if(curr.right === null){
+      curr.right = new BSTNode(newVal);
+      return this;
+    }
+    return this.insertRecursive(newVal, curr.right)
+  }
+
+  if(newVal < curr.data){
+    if(curr.left === null){
+      curr.left = new BSTNode(newVal);
+      return this;
+    }
+    return this.insertRecursive(newVal, curr.left)
+  }
+
+}
 
   
     // Logs this tree horizontally with the root on the left.
@@ -297,21 +351,28 @@ insertRecursive(newVal, curr = this.root) {}
   //   .insert(90);
 
   const tree = new BinarySearchTree()
-  const rootNode = new BSTNode(50)
-  tree.root = rootNode
-  console.log(tree.max())
-  tree.root.left = new BSTNode(5)
-  tree.root.right = new BSTNode(60)
-  tree.root.left.left = new BSTNode(4)
-  tree.root.left.left.left = new BSTNode(3)
+  // const rootNode = new BSTNode(50)
+  // tree.root = rootNode
+  // console.log(tree.max())
+  // tree.root.left = new BSTNode(5)
+  // tree.root.right = new BSTNode(60)
+  // tree.root.left.left = new BSTNode(4)
+  // tree.root.left.left.left = new BSTNode(3)
   // console.log(tree.min())
   // console.log(tree.minRecursive())
   // console.log(tree.max())
   // console.log(tree.maxRecursive())
-  console.log(tree.contains(42));
-  console.log(tree.contains(4));
-  console.log(tree.containsRecursive(42));
-  console.log(tree.containsRecursive(4));
-  console.log(tree.range(5))
+  // console.log(tree.contains(42));
+  // console.log(tree.contains(4));
+  // console.log(tree.containsRecursive(42));
+  // console.log(tree.containsRecursive(4));
+  // console.log(tree.range(5))
 
+  tree.insertRecursive(50)
+  tree.insertRecursive(34)
+  tree.insertRecursive(54)
+  tree.insertRecursive(58)
+  tree.insertRecursive(28)
+  tree.insertRecursive(28)
 
+tree.print();
