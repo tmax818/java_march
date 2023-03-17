@@ -40,7 +40,8 @@ public class HomeController {
         
         // TO-DO Later -- call a register method in the service 
         // to do some extra validations and create a new user!
-        
+        System.out.println(newUser);
+        User user = userService.register(newUser, result);
         if(result.hasErrors()) {
             // Be sure to send in the empty LoginUser before 
             // re-rendering the page.
@@ -51,7 +52,8 @@ public class HomeController {
         // No errors! 
         // TO-DO Later: Store their ID from the DB in session, 
         // in other words, log them in.
-    
+        session.setAttribute("userId", user.getId());
+        session.setAttribute("userName", user.getUserName());
         return "redirect:/home";
     }
     
@@ -72,6 +74,11 @@ public class HomeController {
         // in other words, log them in.
     
         return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "home.jsp";
     }
     
 }

@@ -36,6 +36,19 @@ public class User {
     private String confirm;
   
     public User() {}
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", userName='" + getUserName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", confirm='" + getConfirm() + "'" +
+            "}";
+    }
+
     
     // TODO - Don't forget to generate getters and setters
 
