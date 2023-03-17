@@ -39,20 +39,18 @@ public class HomeController {
             BindingResult result, Model model, HttpSession session) {
         System.out.println(newUser);
         // TO-DO Later -- call a register method in the service
-        userService.register(newUser, result); 
+        User user = userService.register(newUser, result); 
         // to do some extra validations and create a new user!
-        
         if(result.hasErrors()) {
             // Be sure to send in the empty LoginUser before 
             // re-rendering the page.
             model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
-        
-        // No errors! 
+        //! No errors! 
         // TO-DO Later: Store their ID from the DB in session, 
         // in other words, log them in.
-    
+        session.setAttribute("userId", user.getId());
         return "redirect:/home";
     }
     
@@ -61,18 +59,24 @@ public class HomeController {
             BindingResult result, Model model, HttpSession session) {
         
         // Add once service is implemented:
-        // User user = userServ.login(newLogin, result);
+        User user = userService.login(newLogin, result);
     
         if(result.hasErrors()) {
             model.addAttribute("newUser", new User());
             return "index.jsp";
         }
-    
         // No errors! 
         // TO-DO Later: Store their ID from the DB in session, 
         // in other words, log them in.
+        session.setAttribute("userId", user.getId());
     
         return "redirect:/home";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
     
 }

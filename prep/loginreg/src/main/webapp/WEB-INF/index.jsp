@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/app.js"></script><!-- change to match your file/naming structure -->
 </head>
 <body>
+    ${userId}
     <div class="container">
         <h1  class="align-content-center">Login and Registration</h1>
             <div class="row">
