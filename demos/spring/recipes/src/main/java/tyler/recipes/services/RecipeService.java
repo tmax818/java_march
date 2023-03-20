@@ -1,0 +1,26 @@
+package tyler.recipes.services;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tyler.recipes.models.Recipe;
+import tyler.recipes.repositories.RecipeRepository;
+
+@Service
+public class RecipeService {
+
+    @Autowired RecipeRepository recipeRepository;
+
+    public void createRecipe(@Valid Recipe recipe) {
+        recipeRepository.save(recipe);
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
+    }
+    
+}
