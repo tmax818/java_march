@@ -39,7 +39,7 @@
                     <!-- if the recipe.user_id equals the logged in user's id  -->
                     <c:if test="${recipe.user.id == userId}">
                         <a href="/recipes/edit/${recipe.id}">edit</a>
-                        <form action="/recipes/${book.id}" method="post">
+                        <form action="/recipes/delete/${recipe.id}" method="post">
                             <input type="hidden" name="_method" value="delete">
                             <input type="submit" value="Delete">
                         </form>

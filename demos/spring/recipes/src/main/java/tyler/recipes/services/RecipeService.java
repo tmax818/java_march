@@ -16,7 +16,7 @@ public class RecipeService {
 
     @Autowired RecipeRepository recipeRepository;
 
-    public void createRecipe(@Valid Recipe recipe) {
+    public void createRecipe(Recipe recipe) {
         recipeRepository.save(recipe);
     }
 
@@ -27,6 +27,14 @@ public class RecipeService {
     public Recipe getOneRecipe(Long id) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         return recipe.orElse(null);
+    }
+
+    public void updateRecipe(Recipe recipe) {
+        recipeRepository.save(recipe);
+    }
+
+    public void destroyRecipe(Long id) {
+        recipeRepository.deleteById(id);
     }
     
 }

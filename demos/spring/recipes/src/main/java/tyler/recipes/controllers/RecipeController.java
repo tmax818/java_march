@@ -2,6 +2,7 @@ package tyler.recipes.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelExtensionsKt;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import tyler.recipes.models.Recipe;
 import tyler.recipes.services.RecipeService;
@@ -38,7 +41,10 @@ public class RecipeController {
     
     //! READ ALL
     @GetMapping("/recipes")
-    public String recipes(Model model){
+    public String recipes(Model model, HttpSession session){
+        if(session.getAttribute("userId") == null){
+            return "redirect:/logout";
+        }
         List<Recipe> recipes = recipeService.getAllRecipes();
         System.out.println(recipes);
         model.addAttribute("recipes", recipes);
@@ -53,4 +59,31 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "recipes/show.jsp";
     }
+
+    //! UPDATE
+
+    @GetMapping("/recipes/edit/{id}")
+    public String edit(@PathVariable("id")Long id, Model model){
+        Recipe recipe = recipeService.getOneRecipe(id);
+        model.addAttribute("recipe", recipe);
+        return "recipes/edit.jsp";
+    }
+
+    @PutMapping("/recipes/{id}")
+    public String update(@ModelAttribute("recipe")Recipe recipe){
+        recipeService.updateRecipe(recipe);
+        return "redirect:/recipes";
+    }
+
+    //! DELETE
+
+    @DeleteMapping("/recipes/delete/{id}")
+    public String destroy(@PathVariable("id")Long id, HttpSession session){
+        // if(session.getAttribute("userId") == null){
+        //     return "redirect:/logout";
+        // }
+        recipeService.destroyRecipe(id);
+        return "redirect:/recipes";
+    }
+
 }

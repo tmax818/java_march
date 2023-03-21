@@ -29,9 +29,10 @@
             
             <h3>Posted by: ${recipe.user.userName}</h3>
             
+            <h4>Date made</h4>
             <p>${recipe.dateMade}</p>
 
-   
+            <h4>Under 30 min</h4>
             <c:if test="${recipe.under30}">yes</c:if>
             <c:if test="${!recipe.under30}">no</c:if>
 
