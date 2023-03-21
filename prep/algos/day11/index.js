@@ -340,16 +340,7 @@ toArrPostorder(node = this.root, vals = []) {
 }
 
 //! TUESDAY //////////////////////
-  /* fullTree
-                      root
-                  <-- 25 -->
-                /            \
-              15             50
-            /    \         /    \
-          10     22      35     70
-        /   \   /  \    /  \   /  \
-      4    12  18  24  31  44 66  90
-  */
+
 /**
  * BFS order: horizontal rows top-down left-to-right.
  * Converts this BST into an array following Breadth First Search order.
@@ -358,7 +349,36 @@ toArrPostorder(node = this.root, vals = []) {
  * @param {Node} current The current node during the traversal of this tree.
  * @returns {Array<number>} The data of all nodes in BFS order.
  */
-toArrLevelorder(current = this.root) {}
+toArrLevelorder(current = this.root) {
+  const queue = [];
+  const vals = [];
+
+  if(current){
+    queue.push(current)
+  }
+
+  while(queue.length > 0){
+    const dequeueNode = queue.shift();
+    vals.push(dequeueNode.data);
+
+    if(dequeueNode.left){
+      queue.push(dequeueNode.left);
+    }
+
+    if(dequeueNode.right){
+      queue.push(dequeueNode.right)
+    }
+  }
+  return vals;
+}
+
+toArrLevelorder1(current = this.root){
+  const vals = [];
+  while(current){
+    vals.push(current)
+  }
+
+}
 
 /**
  * Recursively counts the total number of nodes in this tree.
@@ -470,3 +490,4 @@ isFull(node = this.root) {}
 
 
 fullTree.print();
+fullTree.toArrLevelorder();
