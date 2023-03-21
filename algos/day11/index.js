@@ -358,7 +358,34 @@ toArrPostorder(node = this.root, vals = []) {
  * @param {Node} current The current node during the traversal of this tree.
  * @returns {Array<number>} The data of all nodes in BFS order.
  */
-toArrLevelorder(current = this.root) {}
+toArrLevelorder(current = this.root) {
+  const queue = [];
+  const vals = [];
+
+  if(current === null){
+    return vals
+  }
+
+  if(current){
+    queue.push(current)
+  }
+
+  while(queue.length > 0){
+    const dequeuedNode = queue.shift();
+    vals.push(dequeuedNode.data)
+
+    if(dequeuedNode.left){
+      queue.push(dequeuedNode.left)
+    }
+
+    if(dequeuedNode.right){
+      queue.push(dequeuedNode.right)
+    }
+  }
+
+
+  return vals
+}
 
 /**
  * Recursively counts the total number of nodes in this tree.
@@ -470,3 +497,4 @@ isFull(node = this.root) {}
 
 
 fullTree.print();
+console.log(fullTree.toArrLevelorder())
