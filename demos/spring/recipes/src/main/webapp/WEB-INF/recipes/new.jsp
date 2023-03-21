@@ -31,8 +31,8 @@
             <form:label path="under30">under30</form:label>
             <form:errors path="under30"></form:errors>
             <form:select path="under30">
-                <form:option value="0">no</form:option>
-                <form:option value="1">yes</form:option>
+                <form:option value="false">no</form:option>
+                <form:option value="true">yes</form:option>
             </form:select>
         </div>
         

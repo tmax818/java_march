@@ -35,7 +35,7 @@
                 <td>${recipe.name}</td>
                 <td>${recipe.user.userName}</td>
                 <td>
-                    <a href="/recipes/">view</a>
+                    <a href="/recipes/${recipe.id}">view</a>
                     <!-- if the recipe.user_id equals the logged in user's id  -->
                     <c:if test="${recipe.user.id == userId}">
                         <a href="/recipes/edit/${recipe.id}">edit</a>

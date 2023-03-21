@@ -1,6 +1,7 @@
 package tyler.recipes.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -21,6 +22,11 @@ public class RecipeService {
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
+    }
+
+    public Recipe getOneRecipe(Long id) {
+        Optional<Recipe> recipe = recipeRepository.findById(id);
+        return recipe.orElse(null);
     }
     
 }

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="recipes")
 public class Recipe {
@@ -21,6 +23,7 @@ public class Recipe {
 
     private String name;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateMade;
 
     private Boolean under30;

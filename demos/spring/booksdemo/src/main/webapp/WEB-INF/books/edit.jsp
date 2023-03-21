@@ -30,7 +30,7 @@
         <div class="form-control">
             <form:label path="title">title</form:label>
             <form:errors path="title" />
-            <form:input path="title"></form:input>
+            <form:input path="title" value="${ebook.title}"></form:input>
         </div>
         <div class="form-control">
             <form:label path="author">author</form:label>
