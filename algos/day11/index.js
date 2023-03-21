@@ -293,14 +293,7 @@ insertRecursive(newVal, curr = this.root) {
  * @param {Array<number>} vals The data that has been visited so far.
  * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
  */
-toArrPreorder(node = this.root, vals = []) {
-  if (node) {
-    vals.push(node.data);
-    this.toArrPreorder(node.left, vals);
-    this.toArrPreorder(node.right, vals);
-  }
-  return vals;
-}
+toArrPreorder(node = this.root, vals = []) {}
 
 /**
  * DFS Inorder: (Left, CurrNode, Right)
@@ -312,14 +305,7 @@ toArrPreorder(node = this.root, vals = []) {
  * @param {Array<number>} vals The data that has been visited so far.
  * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
  */
-toArrInorder(node = this.root, vals = []) {
-  if (node) {
-    this.toArrInorder(node.left, vals);
-    vals.push(node.data);
-    this.toArrInorder(node.right, vals);
-  }
-  return vals;
-}
+toArrInorder(node = this.root, vals = []) {}
 
 /**
  * DFS Postorder (Left, Right, CurrNode)
@@ -330,14 +316,7 @@ toArrInorder(node = this.root, vals = []) {
  * @param {Array<number>} vals The data that has been visited so far.
  * @returns {Array<number>} The vals in DFS Preorder once all nodes visited.
  */
-toArrPostorder(node = this.root, vals = []) {
-  if (node) {
-    this.toArrPostorder(node.left, vals);
-    this.toArrPostorder(node.right, vals);
-    vals.push(node.data);
-  }
-  return vals;
-}
+toArrPostorder(node = this.root, vals = []) {}
   
     // Logs this tree horizontally with the root on the left.
     print(node = this.root, spaceCnt = 0, spaceIncr = 10) {
