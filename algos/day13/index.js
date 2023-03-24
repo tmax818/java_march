@@ -2,6 +2,14 @@
 TODO: Create the DLLNode class and implement the DoublyLinkedList constructor
 and the empty methods below the constructor.
 */
+class DLLNode {
+  constructor(data){
+    this.data = data;
+    this.next = null;
+    this.prev = null;
+
+  }
+}
 
 /**
  * A class to represent a doubly linked list and contain all of it's methods.
@@ -15,6 +23,8 @@ class DoublyLinkedList {
    */
   constructor() {
     // TODO: implement the constructor.
+    this.head = null;
+    this.tail = null;
   }
 
   /**
@@ -24,7 +34,20 @@ class DoublyLinkedList {
    * @param {any} data The data for the new node.
    * @returns {DoublyLinkedList} This list.
    */
-  insertAtFront(data) {}
+  insertAtFront(data) {
+    const newHead = new DLLNode(data);
+
+    if(this.isEmpty()){
+      this.head = newHead;
+      this.tail = newHead;
+    } else {
+      this.head.prev = newHead;
+      newHead.next = this.head
+      this.head = newHead;
+    }
+    return this;
+
+  }
 
   /**
    * Creates a new node and adds it at the back of this list.
@@ -33,8 +56,35 @@ class DoublyLinkedList {
    * @param {any} data The data for the new node.
    * @returns {DoublyLinkedList} This list.
    */
-  insertAtBack(data) {}
+  insertAtBack(data) {
+    const newTail = new DLLNode(data)
 
+    if(this.isEmpty()){
+      this.head = newTail;
+      this.tail = newTail
+    } else {
+      this.tail.next = newTail;
+      newTail.prev = this.tail;
+      this.tail = newTail;
+    }
+    return this;
+
+  }
+
+  count(){
+    let count = 0;
+    let runner = this.head;
+    if(this.isEmpty()){
+      return count;
+    }
+
+    while(runner){
+      count++
+      runner = runner.next
+    }
+    return count;
+
+  }
   // EXTRA
   /**
    * Removes the middle node in this list.
@@ -42,7 +92,66 @@ class DoublyLinkedList {
    * - Space: O(?).
    * @returns {any} The data of the removed node.
    */
-  removeMiddleNode() {}
+  removeMiddleNode() {
+    let runner = this.head;
+    if(this.count() % 2 === 0){
+      return null
+    } else {
+      let middlenode = Math.round(this.count() / 2)
+      console.log(middlenode)
+      for(let i = 1; i < middlenode; i++){
+        runner = runner.next
+      }
+      console.log(runner.data)
+    }
+
+  }
+
+  removeMiddleNodeStephanie(){
+    let slow = this.head;
+    let fast = this.head;
+
+    while(fast !== null && fast.next){
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    console.log(slow.data)
+    slow.prev.next = slow.next;
+    slow.next.prev = slow.prev;
+    return(slow.data);
+  }
+
+  removeMiddleNodeSol() {
+    // when there is only 1 node, it is the middle, remove it.
+    if (!this.isEmpty() && this.head === this.tail) {
+      const removedData = this.head.data;
+      this.head = null;
+      this.tail = null;
+      return removedData;
+    }
+
+    let forwardRunner = this.head;
+    let backwardsRunner = this.tail;
+
+    while (forwardRunner && backwardsRunner) {
+      if (forwardRunner === backwardsRunner) {
+        const midNode = forwardRunner;
+        midNode.prev.next = midNode.next;
+        midNode.next.prev = midNode.prev;
+        return midNode.data;
+      }
+
+      // runners passed each other without stopping on the same node, even length, we can exit early
+      if (forwardRunner.prev === backwardsRunner) {
+        return null;
+      }
+
+      forwardRunner = forwardRunner.next;
+      backwardsRunner = backwardsRunner.prev;
+    }
+    return null;
+  }
 
   /**
    * Determines if this list is empty.
@@ -99,3 +208,14 @@ const emptyList = new DoublyLinkedList();
 //   -7,
 //   -2,
 // ]);
+
+const ourDLL = new DoublyLinkedList();
+ourDLL.insertAtFront(35);
+ourDLL.insertAtFront(23);
+ourDLL.insertAtBack(45);
+ourDLL.insertAtBack(67);
+ourDLL.insertAtBack(76);
+
+console.log(ourDLL.count())
+ourDLL.removeMiddleNodeStephanie();
+console.log(ourDLL.toArray())
