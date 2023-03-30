@@ -1,7 +1,6 @@
 ## TODO: Print all the integers from 1 to 255.
 
 
-
 ## TODO: Print integers from 0 to 255, and with each integer print the sum so far.
 
 
@@ -38,5 +37,6 @@
 
 
 ## TODO: Return the given array, after setting any negative values to zero.
+
 
 ## TODO: Given an array, move all values forward by one index, dropping the first and leaving a '0' value at the end.
